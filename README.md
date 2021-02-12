@@ -2,11 +2,11 @@
 
 Web-app (Vue.JS) for testing the Forer (a.k.a Barnum) effect. It may be useful for teachers to teach how scientific psychology is different from common sense (_Völkerpsychologie_).
 
+[Live version](https://henriquepgomide.github.io/barnum-forer-effect/)
+
 ![Screenshot](https://raw.githubusercontent.com/henriquepgomide/barnum-forer-effect/main/img/app_screenshot.png)
 
-# Link for live version
 
-[https://henriquepgomide.github.io/barnum-forer-effect/](https://henriquepgomide.github.io/barnum-forer-effect/)
 
 
 ## Technical Instructions
