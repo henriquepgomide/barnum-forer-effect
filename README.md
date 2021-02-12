@@ -9,7 +9,7 @@ Web-app (Vue.JS) for testing the Forer (a.k.a Barnum) effect. It may be useful f
 
 
 
-## Technical Instructions
+## How to run locally
 
 
 ### Project setup
