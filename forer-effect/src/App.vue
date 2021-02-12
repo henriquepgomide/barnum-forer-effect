@@ -3,17 +3,20 @@
       <img alt="Conheça sua sorte" 
 	   width="400px"
 	   src="./assets/genio_mistico.svg"/>
-    <HelloWorld msg="Horóscopo do Místico H." />
+    <Horoscope msg="Horóscopo do Místico HP" />
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Horoscope from "./components/Horoscope.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    Horoscope,
+    Footer
   }
 };
 </script>

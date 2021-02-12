@@ -5,48 +5,86 @@
 
       <div class="columns is-centered">
 	<div class="column is-half">
-	  <b-field label="Qual seu sexo?">
-	    <div class="is-flex is-horizontal-center">
-	      <b-radio-button v-model="sexRadio"
-			      native-value="female"
-			      type="is-primary is-light is-outlined">
-		<span>Feminino</span>
-	      </b-radio-button>
-	      <b-radio-button v-model="sexRadio"
-			      native-value="male"
-			      type="is-primary is-light is-outlined">
-		<span>Masculino</span>
-	      </b-radio-button>
-	    </div>
-	  </b-field>
-	  <b-field label="Qual sua data de nascimento?">
-	    <b-datepicker
-	      v-model="selected"
-	      placeholder="Click to select..."
-	      icon="calendar-today"
-	      :locale="locale"
-	      editable
-	      trap-focus>
-	    </b-datepicker>
-	  </b-field>
+
+	  <b-tabs
+	    v-model="activeTab"
+	    type="is-boxed"
+	    position="is-centered is-medium"
+	    class="block">
+	    <b-tab-item label="Introdução">
+	      <h2>Sexo</h2>
+	      <b-field>
+		<div class="is-flex is-horizontal-center">
+		  <b-radio-button v-model="sexRadio"
+				  native-value="female"
+				  type="is-primary is-light is-outlined">
+		    <span>Feminino</span>
+		  </b-radio-button>
+		  <b-radio-button v-model="sexRadio"
+				  native-value="male"
+				  type="is-primary is-light is-outlined">
+		    <span>Masculino</span>
+		  </b-radio-button>
+		</div>
+	      </b-field>
+	      <h2>Data de nascimento</h2>
+	      <b-field>
+		<b-datepicker
+		  v-model="selected"
+		  placeholder="Click to select..."
+		  icon="calendar-today"
+		  :locale="locale"
+		  editable
+		  trap-focus>
+		</b-datepicker>
+	      </b-field>
+	      <b-button 
+		type="is-primary is-rounded"
+		@click="submit"
+		>
+		Avaliar Personalidade
+	      </b-button>
+	    </b-tab-item>
+	    <b-tab-item label="Minha Personalidade">
+	      <div v-if="!!sexRadio && selected.getYear() < 120">
+		<section>
+		  <div class="is-flex is-horizontal-center">
+		    <figure class="image is-128x128">
+		      <img 
+			    :src="zodiac_img"
+			    ratio="1by1">
+		    </figure>
+		  </div>
+		  <h1 class="title">{{ zodiac }}</h1>
+		  <div class="content is-medium">
+		    <p>{{ horoscope }}</p>
+		    <h2>Por favor, responda o que você achou desta análise</h2>
+		    <a class="button is-large is-primary" href="https://forms.gle/HfqkqKtY3irExL8k8" target="_">Pesquisa</a>
+		    <p></p>
+		  </div>
+		</section>
+	      </div>
+	      <div v-else>
+		<h1>Humm! Você ainda precisa completar suas informações.</h1>
+	      </div>
+	    </b-tab-item>
+
+	    <b-tab-item label="Como funciona">
+	      <div class="content is-medium">
+		<h2 class="title">Efeito Forer ou Barnum</h2>
+		<p>O efeito Forer, também conhecido como Barnum, está ligado ao fato de acreditarmos em avaliações genéricas sobre nós, assumindo que as mesmas são acuradas e personalizadas. Ele explica, pelo menos parcialmente, porque a astrologia e os testes de personalidade são bastante aceitos pela população.</p>
+		<p>Usamos este efeito para mostrar a diferença entre Psicologia Científica da Psicologia do Senso Comum. A teoria da personalidade do horóscopo ocidental carece das características do método científico, como definido por Popper. Entretanto, parte do fenômeno pode ser estudado de forma sistemática e falseável.</p>
+
+		<h3>Referências</h3>
+		<p>Bunchaft, G., & Krüger, H. (2010). Credulidade e efeito Barnum ou Forer. Temas em Psicologia, 18(2), 469–479. <a href="https://www.redalyc.org/pdf/5137/513751436020.pdf">[Link]</a></p>
+
+
+	      </div>
+	    </b-tab-item>
+	  </b-tabs>
 	</div>
       </div>  
-      
-      <div v-if="!!sexRadio && selected.getYear() < 120">
-	<section>
-	  <div class="is-flex is-horizontal-center">
-	    <figure class="image is-128x128">
-	      <img 
-		    :src="zodiac_img"
-		    ratio="1by1">
-	    </figure>
-	  </div>
-	  <h1 class="title">{{ zodiac }}</h1>
-	  <div class="content is-medium">
-	    <p>{{ horoscope }}</p>
-	  </div>
-	</section>
-      </div>
+
 
     </div>
   </div>
@@ -60,6 +98,7 @@ export default {
       selected: new Date(),
       locale: undefined, // Browswer locale
       sexRadio: null,
+      activeTab: 0,
     }
   },
   props: {
@@ -75,6 +114,17 @@ export default {
 	s[j] = temp; 
       } 
       return s
+    },
+    submit: function() {
+      if (!this.sexRadio || this.selected.getYear() > 120) {
+	this.$buefy.toast.open({
+	  message: 'Ajude o Místico, você se esqueceu de adicionar seu sexo ou sua data de nascimento.',
+	  type: 'is-danger',
+	  duration: 3000,
+	})
+      } else {
+	this.activeTab = 1
+      }
     }
   },
   computed: {
@@ -142,6 +192,11 @@ export default {
 h1 {
   font-family: 'Mystery Quest', cursive;
   font-size: 2.5rem;
+}
+
+h2 {
+  font-family: 'Mystery Quest', cursive;
+  font-size: 1.8rem;
 }
 
 h3 {
