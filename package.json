@@ -1,6 +1,6 @@
 {
-  "name": "forer-effect",
-  "version": "0.1.1",
+  "name": "barnum-forer-effect",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

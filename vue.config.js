@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/forer-effect/'
+    publicPath: '/barnum-forer-effect/'
 };
