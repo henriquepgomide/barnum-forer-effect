@@ -1,3 +1,5 @@
 module.exports = {
-    publicPath: '/barnum-forer-effect/'
-};
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/barnum-forer-effect/'
+    : '/'
+}
