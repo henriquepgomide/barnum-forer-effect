@@ -5,7 +5,7 @@ Web-app (Vue.JS) for testing the Forer (a.k.a Barnum) effect. It may be useful f
 
 # Link for live version (pt-BR)
 
-[https://github.com/henriquepgomide/barnum-forer-effect](https://github.com/henriquepgomide/barnum-forer-effect)
+[https://henriquepgomide.github.io/barnum-forer-effect/](https://henriquepgomide.github.io/barnum-forer-effect/)
 
 
 ## Technical Instructions
